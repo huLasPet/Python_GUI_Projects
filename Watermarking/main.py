@@ -9,7 +9,7 @@ from PIL import ImageDraw
 import tkinter
 from tkinter import filedialog
 
-watermark_text = "TEST"
+image_source = ""
 
 
 def watermark(img, w_text):
@@ -27,8 +27,6 @@ def get_file():
 
 
 window = tkinter.Tk()
-
-
 window.config(padx=20, pady=20)
 window.title("Watermarking tool")
 canvas_widget = tkinter.Canvas(width=200, height=200, highlightthickness=0)
@@ -49,13 +47,14 @@ image_entry = tkinter.Entry(width=32)
 image_entry.grid(column=1, row=1, sticky="w")
 image_entry.focus()
 text_to_add_entry = tkinter.Entry(width=45)
-text_to_add_entry.insert(0, "default@random.com")
+text_to_add_entry.insert(0, "Test")
 text_to_add_entry.grid(column=1, row=2, columnspan=2, sticky="w")
 color_entry = tkinter.Entry(width=32)
 color_entry.grid(column=1, row=3, sticky="w")
 
 #Buttons
-watermark_button = tkinter.Button(text="Watermark", width=38,) #command=)
+watermark_button = tkinter.Button(text="Watermark", width=38,
+                                  command=lambda: watermark(image_source, text_to_add_entry.get()))
 generate_button = tkinter.Button(text="Browse color", width=9)
 watermark_button.grid(column=1, row=4, columnspan=2, sticky="w")
 generate_button.grid(column=2, row=3, sticky="w")
