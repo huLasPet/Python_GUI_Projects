@@ -7,6 +7,9 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 import tkinter
+from tkinter import filedialog
+
+watermark_text = "TEST"
 
 
 def watermark(img, w_text):
@@ -16,11 +19,16 @@ def watermark(img, w_text):
     img.save('watermarked.jpg')
 
 
-image_source = Image.open("img.jpg")
-watermark_text = "TEST"
-watermark(image_source, watermark_text)
+def get_file():
+    global image_source
+    file = filedialog.askopenfile(parent=window,mode='rb',title='Choose a file')
+    if file:
+        image_source = Image.open(file)
+
 
 window = tkinter.Tk()
+
+
 window.config(padx=20, pady=20)
 window.title("Watermarking tool")
 canvas_widget = tkinter.Canvas(width=200, height=200, highlightthickness=0)
@@ -29,29 +37,29 @@ canvas_widget = tkinter.Canvas(width=200, height=200, highlightthickness=0)
 canvas_widget.grid(column=1, row=0, sticky="w")
 
 #Labels
-website = tkinter.Label(text="Image:")
-website.grid(column=0, row=1, sticky="w")
-username = tkinter.Label(text="Text to add:")
-username.grid(column=0, row=2, sticky="w")
-password =tkinter.Label(text="Color:")
-password.grid(column=0, row=3, sticky="w")
+image = tkinter.Label(text="Image:")
+image.grid(column=0, row=1, sticky="w")
+text_to_add = tkinter.Label(text="Text to add:")
+text_to_add.grid(column=0, row=2, sticky="w")
+color =tkinter.Label(text="Color:")
+color.grid(column=0, row=3, sticky="w")
 
 #Entries
-website_entry = tkinter.Entry(width=32)
-website_entry.grid(column=1, row=1, sticky="w")
-website_entry.focus()
-username_entry = tkinter.Entry(width=45)
-username_entry.insert(0, "default@random.com")
-username_entry.grid(column=1, row=2, columnspan=2, sticky="w")
-password_entry = tkinter.Entry(width=32)
-password_entry.grid(column=1, row=3, sticky="w")
+image_entry = tkinter.Entry(width=32)
+image_entry.grid(column=1, row=1, sticky="w")
+image_entry.focus()
+text_to_add_entry = tkinter.Entry(width=45)
+text_to_add_entry.insert(0, "default@random.com")
+text_to_add_entry.grid(column=1, row=2, columnspan=2, sticky="w")
+color_entry = tkinter.Entry(width=32)
+color_entry.grid(column=1, row=3, sticky="w")
 
 #Buttons
-add_button = tkinter.Button(text="Add", width=38,) #command=)
-generate_button = tkinter.Button(text="Browse", width=9,) #command=)
-add_button.grid(column=1, row=4, columnspan=2, sticky="w")
+watermark_button = tkinter.Button(text="Watermark", width=38,) #command=)
+generate_button = tkinter.Button(text="Browse color", width=9)
+watermark_button.grid(column=1, row=4, columnspan=2, sticky="w")
 generate_button.grid(column=2, row=3, sticky="w")
-search_button = tkinter.Button(text="Browse", width=9,) #command=)
+search_button = tkinter.Button(text="Browse file", width=9, command=get_file)
 search_button.grid(column=2, row=1, sticky="w")
 
 
