@@ -63,6 +63,4 @@ search_button = tk.Button(text="Browse file", width=20, command=get_file)
 search_button.grid(column=1, row=0, sticky="w")
 
 
-
-
 window.mainloop()
