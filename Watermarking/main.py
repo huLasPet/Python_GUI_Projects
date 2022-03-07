@@ -10,7 +10,8 @@ dropdown_choices = ["Top Left", "Top Right", "Bottom Left", "Bottom Right"]
 
 def watermark(img, w_text):
     """Adds the watermark to the picture.
-    It needs the picture and the text to be provided when calling it."""
+    It needs the picture and the text to be provided when calling it.
+    Font file needs to be in the same folder or path needs to be edited."""
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("./arial.ttf", 32)
     draw.text(variables["corner"], w_text, variables["text_color"][0], font=font)
