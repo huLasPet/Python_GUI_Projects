@@ -11,6 +11,7 @@ class TypingSpeed:
     def __init__(self):
         self.bs_text = ""
         self.displayed_text = ""
+        self.typed_chars = 0
 
     def get_sample_text(self):
         response = requests.get(url="https://corporatebs-generator.sameerkumar.website/")
@@ -18,6 +19,9 @@ class TypingSpeed:
         return self.bs_text
 
     def display_text_and_entry(self):
+        self.typed_chars += len(text_entry.get())
+        text_entry.delete(0, "end")
+        text_entry.focus()
         self.displayed_text = typing.get_sample_text()
         text_display.config(text=self.displayed_text)
         text_entry.config(width=len(self.displayed_text))
@@ -38,8 +42,9 @@ text_display = tk.Label(text="Press start")
 text_display.grid(column=0, row=0, sticky="w")
 text_entry = tk.Entry(window)
 
+
 start_stop_button = tk.Button(text="Start", command=typing.display_text_and_entry)
-start_stop_button.grid(column=0, row=2)
+start_stop_button.grid(column=0, row=2, sticky="w")
 
 typing.get_sample_text()
 window.mainloop()
