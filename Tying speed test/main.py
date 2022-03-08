@@ -1,8 +1,3 @@
-# TODO: Count the number of characters typed in and how long it took.
-#  When clicking start the type field should come to focus right away.
-# Get the length of the text entry - len(text_entry.get()) - and use time to get the speed
-
-
 import tkinter as tk
 import requests
 import time
@@ -31,14 +26,12 @@ class TypingSpeed:
         text_entry.config(width=len(self.displayed_text))
         text_entry.grid(column=0, row=1, sticky="w")
 
-
     def stop_typing(self):
         self.stop = time.time()
         self.typed_chars += len(text_entry.get())
-        text_display.config(text=f"Typed in {self.typed_chars} characters in {(self.stop - self.start):.2} seconds.")
-        # start timer and focus on text input
-        # enter should end the timing
-
+        time_diff = self.stop - self.start
+        text_display.config(text=f"Typed in {self.typed_chars} characters in {time_diff:.2} seconds.\n"
+                                 f"This means your typing speed is {(self.typed_chars / time_diff):.2} chars a second.")
 
 typing = TypingSpeed()
 window = tk.Tk()
