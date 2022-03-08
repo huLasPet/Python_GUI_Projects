@@ -27,8 +27,10 @@ class TypingSpeed:
         text_entry.config(width=len(self.displayed_text))
         text_entry.grid(column=0, row=1, sticky="w")
 
-    def start_typing(self):
-        pass
+
+    def stop_typing(self):
+        self.typed_chars += len(text_entry.get())
+        text_display.config(text=f"Typed in {self.typed_chars} characters.")
         # start timer and focus on text input
         # enter should end the timing
 
@@ -43,8 +45,9 @@ text_display.grid(column=0, row=0, sticky="w")
 text_entry = tk.Entry(window)
 
 
-start_stop_button = tk.Button(text="Start", command=typing.display_text_and_entry)
-start_stop_button.grid(column=0, row=2, sticky="w")
+start_button = tk.Button(text="Start", command=typing.display_text_and_entry)
+start_button.grid(column=0, row=2, sticky="w")
+stop_button = tk.Button(text="Stop", command=typing.stop_typing)
+stop_button.grid(column=1, row=2, sticky="w")
 
-typing.get_sample_text()
 window.mainloop()
