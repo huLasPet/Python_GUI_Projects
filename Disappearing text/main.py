@@ -1,18 +1,15 @@
-#TODO: Create a GUI app where if you stop typing for 5 seconds the text will disappear
-#Try to check if the length of the entry changed and if not, delete what is there
-
 import tkinter as tk
 
 
 class TextDelete:
     def __init__(self):
-        self.char_count = 0
-        self.prev_count = 0
+        self.text = ""
+        self.prev_text = ""
 
     def delete(self):
-        self.prev_count = self.char_count
-        self.char_count = len(text_display.get(1.0, 'end'))
-        if self.prev_count == self.char_count:
+        self.prev_text = self.text
+        self.text = text_display.get(1.0, 'end')
+        if self.prev_text == self.text:
             text_display.delete(1.0, 'end')
         window.after(5000, self.delete)
 
