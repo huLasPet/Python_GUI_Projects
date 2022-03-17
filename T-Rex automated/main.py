@@ -8,7 +8,12 @@ import time
 time.sleep(5)
 print("Start")
 while True:
-    jump = pyautogui.locateOnScreen("not_clear.PNG", confidence=0.95)
-    if jump == None:
-        pyautogui.press("space")
+    #1st way
+    # jump = pyautogui.locateOnScreen("not_clear.PNG", confidence=0.95)
+    # if jump == None:
+    #     pyautogui.press("space")
+    #2nd way
+    jumper = pyautogui.pixelMatchesColor(820, 398, (83, 83, 83))
+    if jumper:
+        pyautogui.press('space')
 
