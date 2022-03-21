@@ -9,6 +9,7 @@ load_dotenv(r"C:\Users\hulaspet\DEV\Python_env\.env")
 CHROME_DRIVER_PATH = ChromeService(executable_path=os.getenv("chrome_driver"))
 LINK_TO_SITE = "https://elgoog.im/t-rex/"
 
+
 class AutoJump:
     def __init__(self):
         self.obstacle_x = 0
@@ -39,4 +40,3 @@ while True:
     jumper = pyautogui.pixelMatchesColor(bot.obstacle_x, bot.obstacle_y, expectedRGBColor=(83, 83, 83))
     if jumper:
         pyautogui.press('up')
-
